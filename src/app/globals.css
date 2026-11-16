@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary-navy: #102A56;
+  --color-deep-navy: #0B1B36;
+  --color-primary-blue: #2563EB;
+  --color-accent-blue: #4F8CFF;
+  --color-soft-blue: #EAF2FF;
+  --color-bg-main: #F7F9FC;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #172033;
+  --color-text-secondary: #718096;
+  --color-border: #E5EAF2;
+  --color-success: #16A36A;
+  --color-warning: #E9A23B;
+  --color-error: #DC5353;
+}
+
+@layer base {
+  * {
+    border-color: rgba(16, 42, 86, 0.08);
+  }
+
+  html {
+    background-color: #F7F9FC;
+    color: #172033;
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-geist-sans),
+      "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F7F9FC;
+    color: #172033;
+    font-size: 14px;
+    line-height: 1.55;
+    letter-spacing: -0.008em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.022em;
+    color: #172033;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-geist-mono), "SF Mono", ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, monospace;
+  }
+
+  table,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Apple-style ultra-clean scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 42, 86, 0.14);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 42, 86, 0.28);
+}
