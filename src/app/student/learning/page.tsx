@@ -39,15 +39,14 @@ export default function StudentLearningJourneyPage() {
   const { stages, submissions, updateSubmission, completeStage } =
     useAppStore();
   const { notify } = useToast();
-  const [selectedStageNum, setSelectedStageNum] = useState<number>(3);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const st = Number(params.get("stage"));
-    if (st >= 1 && st <= 6) {
-      setSelectedStageNum(st);
+  const [selectedStageNum, setSelectedStageNum] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const p = new URLSearchParams(window.location.search).get("stage");
+      const num = Number(p);
+      if (num >= 1 && num <= 6) return num;
     }
-  }, []);
+    return 3;
+  });
 
   const selectedStage =
     stages.find((s) => s.stageNumber === selectedStageNum) || stages[0];

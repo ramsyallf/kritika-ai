@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "@/lib/store";
+import { createId } from "@/lib/utils";
 import {
   Card,
   Button,
@@ -61,7 +62,7 @@ export default function LecturerTopicsPage() {
 
   const onSubmit = (data: TopicFormValues) => {
     addTopic({
-      id: `top-${Date.now()}`,
+      id: createId("top"),
       code: data.code,
       cpmk: data.cpmk,
       title: data.title,

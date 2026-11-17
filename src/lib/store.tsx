@@ -158,24 +158,27 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed.role) setRoleState(parsed.role);
-        if (parsed.stages) setStages(parsed.stages);
-        if (parsed.submissions) {
-          setSubmissions({
-            ...DEFAULT_SUBMISSIONS,
-            ...parsed.submissions,
-          });
-        }
-        if (parsed.mentorMessages) setMentorMessages(parsed.mentorMessages);
-        if (parsed.classes) setClasses(parsed.classes);
-        if (parsed.topics) setTopics(parsed.topics);
-        if (parsed.cases) setCases(parsed.cases);
-        if (parsed.students) setStudents(parsed.students);
+        queueMicrotask(() => {
+          if (parsed.role) setRoleState(parsed.role);
+          if (parsed.stages) setStages(parsed.stages);
+          if (parsed.submissions) {
+            setSubmissions({
+              ...DEFAULT_SUBMISSIONS,
+              ...parsed.submissions,
+            });
+          }
+          if (parsed.mentorMessages) setMentorMessages(parsed.mentorMessages);
+          if (parsed.classes) setClasses(parsed.classes);
+          if (parsed.topics) setTopics(parsed.topics);
+          if (parsed.cases) setCases(parsed.cases);
+          if (parsed.students) setStudents(parsed.students);
+        });
       }
     } catch {
       // Ignore storage errors
+    } finally {
+      queueMicrotask(() => setHydrated(true));
     }
-    setHydrated(true);
   }, []);
 
   useEffect(() => {

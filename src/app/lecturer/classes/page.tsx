@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppStore } from "@/lib/store";
+import { createId } from "@/lib/utils";
 import { ClassCohort } from "@/types";
 import {
   Card,
@@ -61,7 +62,7 @@ export default function LecturerClassesPage() {
 
   const onSubmit = (data: CreateClassForm) => {
     const newCls: ClassCohort = {
-      id: `cls-${Date.now()}`,
+      id: createId("cls"),
       ...data,
       semester: "Semester Genap 2026/2027",
       averageProgress: 15,

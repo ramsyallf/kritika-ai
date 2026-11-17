@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useAppStore } from "@/lib/store";
 import { generateSocraticMentorReply } from "@/lib/ai-mentor-service";
+import { createId, getNowTimeString } from "@/lib/utils";
 import {
   SOCRATIC_PROMPT_STARTERS,
   MENTOR_CONTEXT_PANEL_DATA,
@@ -59,16 +60,11 @@ export default function StudentMentorPage() {
     const content = (textOverride ?? input).trim();
     if (!content || isThinking) return;
 
-    const now = new Date().toLocaleTimeString("id-ID", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
     const studentMsg = {
-      id: `std-${Date.now()}`,
+      id: createId("std"),
       sender: "student" as const,
       content,
-      timestamp: `${now} WIB`,
+      timestamp: `${getNowTimeString()} WIB`,
     };
 
     const updatedHistory = [...mentorMessages, studentMsg];
